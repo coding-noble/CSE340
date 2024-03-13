@@ -190,6 +190,51 @@ button:hover {
   background-color: var(--color-light-orange);
 }
 
+#inv-display {
+  list-style: none;
+  padding: 2vw;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  gap: 2vw;
+}
+
+#inv-display li {
+  background-color: var(--color-orange);
+  border-radius: 1vw;
+  padding: 2vw;
+}
+
+#inv-display li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+#inv-display li img {
+  width: 100%;
+  border-radius: 1vw 1vw 0 0;
+}
+
+.namePrice {
+  margin-top: 1vw;
+}
+
+.namePrice hr {
+  margin: 0.5vw 0;
+}
+
+.namePrice h2 {
+  font-size: calc(var(--font-size-base) * 1.25);
+  font-weight: bold;
+  font-family: var(--font-family-main);
+  margin-bottom: 0.5vw;
+}
+
+.namePrice span {
+  font-size: var(--font-size-base);
+}
+
 footer {
   margin-left: 25px;
 }
@@ -231,5 +276,9 @@ footer {
 
   #delorean-reviews ul {
     padding-left: 20px;
+  }
+
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
