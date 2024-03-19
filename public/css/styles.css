@@ -9,10 +9,11 @@
   --nav-hover-color: #333333;
   --font-family-main: Arial, sans-serif;
   --font-family-heading: 'Press Start 2P', cursive;
-  --font-size-navigation: 2vw;
-  --font-size-base: 2.75vw;
-  --font-size-heading: 3.5vw;
-  --font-size-big-heading: 4.25vw;
+  /* --font-size-navigation: max(10px, min(2vw, 30px)); */
+  --font-size-navigation: clamp(10px, 2vw, 35px);
+  --font-size-base: clamp(15px, 2.25vw, 40px);
+  --font-size-heading: clamp(15px, 3.5vw, 50px);
+  --font-size-big-heading: clamp(15px, 4.25vw, 75px);
 }
 
 *,
@@ -22,7 +23,7 @@
 }
 
 html {
-  background-image: url('/images/site/checkerboard.jpg');
+  background-image: url('/images/site/checkerboard.webp');
 }
 
 body {
@@ -82,8 +83,13 @@ nav ul li:hover {
   background-color: var(--nav-hover-color);
 }
 
+nav a {
+  text-decoration: none;
+  color: var(--nav-font-color);
+}
+
 #delorean-display h1 {
-  font-size: calc(var(--font-size-big-heading) - 4px);
+  font-size: var(--font-size-big-heading);
   font-weight: bold;
   font-family: var(--font-family-heading);
 }
@@ -111,7 +117,7 @@ nav ul li:hover {
 }
 
 #delorean-details h1 {
-  font-size: calc(var(--font-size-heading) - 4px);
+  font-size: var(--font-size-heading);
   font-weight: bold;
   color: var(--header-font-color);
   font-family: var(--font-family-heading);
@@ -192,17 +198,20 @@ button:hover {
 
 #inv-display {
   list-style: none;
-  padding: 2vw;
+  padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-  gap: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #inv-display li {
   background-color: var(--color-orange);
   border-radius: 1vw;
   padding: 2vw;
+  flex-basis: calc(33.33% - 20px);
+  max-width: calc(33.33% - 20px);
+  margin: 0.25vw;
 }
 
 #inv-display li a {
@@ -225,7 +234,7 @@ button:hover {
 }
 
 .namePrice h2 {
-  font-size: calc(var(--font-size-base) * 1.25);
+  font-size: var(--font-size-base);
   font-weight: bold;
   font-family: var(--font-family-main);
   margin-bottom: 0.5vw;
@@ -259,7 +268,12 @@ footer {
   margin-left: 25px;
 }
 
-@media screen and (min-width: 768px) {
+.notice {
+  color: red;
+  font-size: var(--font-size-base);
+}
+
+@media screen and (min-width: 768px) {  
   nav {
     margin: 0 20px;
   }
@@ -291,7 +305,6 @@ footer {
 
   #upgrade-navigation, #delorean-reviews {
     flex: 1;
-    max-width: 50%;
   }
 
   #delorean-reviews ul {
