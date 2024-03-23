@@ -1,0 +1,40 @@
+<% if (title) {%>
+  <div id="addInventory">
+    <h1>
+      <%= title %>
+    </h1>
+    <%- messages() %>
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.array().forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+          <form action="/inv/add-inventory" method="post">
+            <div class="inform">*All fields required</div>
+            <label for="classificationId">Classification: <%- invClass %></label>
+            <label for="make">Vehicle Make:<input type="text" name="inv_make" id="invMake" required
+                value="<%= locals.inv_make %>" /></label>
+            <label for="model">Vehicle Model:<input type="text" name="inv_model" id="invModel" required
+                value="<%= locals.inv_model %>" /></label>
+            <label for="year">Model Year:<input type="number" name="inv_year" id="invYear" required min="1950"
+                max="2025" value="<%= locals.inv_year %>" /></label>
+            <label for="description">Description:<textarea name="inv_description" id="invDescription" cols="30" rows="5"
+                minlength="10" required><%= locals.inv_description %></textarea></label>
+            <label for="Image">Vehicle Image:<input type="text" name="inv_image" id="invImage" required
+                value="<%= locals.inv_image %>" /></label>
+            <label for="thumbnail">Thumbnail:<input type="text" name="inv_thumbnail" id="thumbnail" required
+                value="<%= locals.inv_thumbnail %>" /></label>
+            <label for="price">Price:<input type="number" name="inv_price" id="invPrice" required min="20"
+                value="<%= locals.inv_price  %>" /></label>
+            <label for="miles">Miles:<input type="number" name="inv_miles" id="invMiles" minlength="1" required
+                value="<%= locals.inv_miles %>" /></label>
+            <label for="color">Color:<input type="text" name="inv_color" id="invColor" required
+                value="<%= locals.inv_color %>" /></label>
+            <button type="submit">Add Vehicle</button>
+          </form>
+  </div>
+  <%} else{res.redirect("/")} %>

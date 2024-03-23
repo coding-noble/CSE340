@@ -107,7 +107,7 @@ nav a {
   position: absolute;
   top: 50%;
   left: 3%;
-  transform: translateY(-50%);
+  transform: translateY(-25%);
   width: fit-content;
   height: fit-content;
   background-color: var(--color-opaque-orange);
@@ -189,7 +189,7 @@ button:hover {
 
 .upgrade-item a {
   color: #000000;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-base) / 2;
 }
 
 .upgrade-item:hover {
@@ -273,6 +273,55 @@ footer {
   font-size: var(--font-size-base);
 }
 
+#login, #register, #management, #addClassification, #addInventory {
+  max-width: 50vw;
+  margin: 3.5vw auto;
+  padding: 2.5vw;
+  background-color: var(--color-light-orange);
+  border-radius: 2vw;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
+}
+
+#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1 {
+  font-size: var(--font-size-big-heading);
+}
+
+#login form, #register form, #addClassification form, #addInventory form {
+  display: flex;
+  flex-direction: column;
+}
+
+#login label, #register label, #addClassification label, #addInventory label {
+  font-size: 2.5vw;
+  margin-bottom: 1.25vw;
+}
+
+#login input, #register input, #addClassification input, #addInventory input, #addInventory select {
+  padding: 1.25vw;
+  margin-bottom: 1.25vw;
+  border-radius: 1vw;
+  border: 0.1vw solid #ccc;
+  font-size: var(--font-size-base);
+}
+
+#management p, #management a {
+  font-size: var(--font-size-base);
+}
+
+.register-link {
+  margin-top: 1.25vw;
+  text-align: center;
+}
+
+.register-link a {
+  color: var(--header-font-color);
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  color: var(--nav-hover-color);
+}
+
 @media screen and (min-width: 768px) {  
   nav {
     margin: 0 20px;
@@ -323,5 +372,9 @@ footer {
 
   #image-box, #info-box {
     max-width: 45%;
+  }
+
+  #login, #register, #management, #addClassification, #addInventory  {
+    max-width: 35vw;
   }
 }
