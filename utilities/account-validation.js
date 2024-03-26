@@ -54,14 +54,14 @@ validate.checkRegData = async (req, res, next) => {
 validate.loginRules = () => {
     return [
         body("account_email").trim().notEmpty().isEmail().normalizeEmail().withMessage("Please enter a valid email address"),
-        body("account_password").trim().notEmpty().withMessage("Password is required"),
+        body("account_password").trim().notEmpty().withMessage("Password is required")
     ];
 };
 
 /***********************
  * Check data before processing login
  ***********************/
-validate.checkLogin = async (req, res, next) => {
+validate.checkLoginData = async (req, res, next) => {
     const { account_email } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

@@ -2,6 +2,8 @@ const { route } = require("../routes/static");
 const utilities = require("../utilities");
 const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ****************************************
 *  Build View
@@ -20,22 +22,20 @@ async function buildView(req, res, next, template, title) {
 /* ****************************************
 *  Deliver login view
 * *************************************** */
-async function buildLogin(req, res, next) {
-  await buildView(req, res, next, "login", "Login");
-}
+async function buildLogin(req, res, next) { await buildView(req, res, next, "login", "Login"); }
 
 /* ****************************************
 *  Deliver registration view
 * *************************************** */
-async function buildRegister(req, res, next) {
-  await buildView(req, res, next, "register", "Register");
-}
+async function buildRegister(req, res, next) { await buildView(req, res, next, "register", "Register"); }
 
 /* ****************************************
-*  Process Registration
-*  Handles registration logic.
-*  Hashes the password before storing.
-*  Notifies the user about the registration status.
+*  Deliver default view
+* *************************************** */
+async function buildDefault(req, res, next) { await buildView(req, res, next, "default", "Default"); }
+
+/* ****************************************
+*  Process registration request
 * *************************************** */
 async function registerAccount(req, res, next) {
   const { account_firstname, account_lastname, account_email, account_password } = req.body;
@@ -58,4 +58,37 @@ async function registerAccount(req, res, next) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount };
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  if (!accountData) {
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      delete accountData.account_password
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+      if (process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
+      return res.redirect("/account/")
+    }
+  } catch (error) {
+    return new Error('Access Forbidden')
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildDefault };
