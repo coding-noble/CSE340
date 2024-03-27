@@ -12,7 +12,7 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.post("/login", regValidate.loginRules(), regValidate.checkLoginData, utilities.handleErrors(accountController.accountLogin));
 
 // Route for default accounts
-router.get("/account/", utilities.handleErrors(accountController.buildDefault))
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildDefault));
 
 // Route to build registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
