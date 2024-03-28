@@ -13,19 +13,31 @@
             <% }) %>
         </ul>
         <% } %>
-          <form action="/inv/update" method="post">
+          <form id="updateForm" action="/inv/update" method="post">
             <div class="inform">*All fields required</div>
             <label for="classificationId">Classification: <%- classificationSelect %></label>
-            <label for="make">Vehicle Make:<input type="text" name="inv_make" id="invMake" value="<%= locals.inv_make %>" required/></label>
-            <label for="model">Vehicle Model:<input type="text" name="inv_model" id="invModel" value="<%= locals.inv_model %>" required/></label>
-            <label for="year">Model Year:<input type="number" name="inv_year" id="invYear" min="1950" max="2025" value="<%= locals.inv_year %>" required/></label>
-            <label for="description">Description:<textarea name="inv_description" id="invDescription" cols="30" rows="5" minlength="10"><%= locals.inv_description %></textarea></label>
-            <label for="Image">Vehicle Image:<input type="text" name="inv_image" id="invImage" value="<%= locals.inv_image %>" required/></label>
-            <label for="thumbnail">Thumbnail:<input type="text" name="inv_thumbnail" id="thumbnail" value="<%= locals.inv_thumbnail %>" required/></label>
-            <label for="price">Price:<input type="number" name="inv_price" id="invPrice" min="20" value="<%= locals.inv_price  %>" required/></label>
-            <label for="miles">Miles:<input type="number" name="inv_miles" id="invMiles" minlength="1" value="<%= locals.inv_miles %>" required/></label>
-            <label for="color">Color:<input type="text" name="inv_color" id="invColor" value="<%= locals.inv_color %>" required/></label>
-            <button type="submit">Update Vehicle</button>
+            <label for="make">Vehicle Make:<input type="text" name="inv_make" id="invMake"
+                value="<%= locals.inv_make %>" required /></label>
+            <label for="model">Vehicle Model:<input type="text" name="inv_model" id="invModel"
+                value="<%= locals.inv_model %>" required /></label>
+            <label for="year">Model Year:<input type="number" name="inv_year" id="invYear" min="1950" max="2025"
+                value="<%= locals.inv_year %>" required /></label>
+            <label for="description">Description:<textarea name="inv_description" id="invDescription" cols="30" rows="5"
+                minlength="10"><%= locals.inv_description %></textarea></label>
+            <label for="Image">Vehicle Image:<input type="text" name="inv_image" id="invImage"
+                value="<%= locals.inv_image %>" required /></label>
+            <label for="thumbnail">Thumbnail:<input type="text" name="inv_thumbnail" id="thumbnail"
+                value="<%= locals.inv_thumbnail %>" required /></label>
+            <label for="price">Price:<input type="number" name="inv_price" id="invPrice" min="20"
+                value="<%= locals.inv_price  %>" required /></label>
+            <label for="miles">Miles:<input type="number" name="inv_miles" id="invMiles" minlength="1"
+                value="<%= locals.inv_miles %>" required /></label>
+            <label for="color">Color:<input type="text" name="inv_color" id="invColor" value="<%= locals.inv_color %>"
+                required /></label>
+            <button type="submit" disabled>Update Vehicle</button>
+            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"<% } %>>
           </form>
   </div>
   <%} else{res.redirect("/")} %>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+    <script src="../../js/edit-inventory.js"></script>
