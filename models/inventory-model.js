@@ -86,14 +86,14 @@ async function verifyNewClassification(classification_name) {
 }
 
 /****************
- * Get members list (Intentional Error)
+ * Get Problems list (Intentional Error)
  ****************/
-async function getMembers() {
+async function getProblems() {
   try {
-    const data = await pool.query(`SELECT * FROM public.members`);
+    const data = await pool.query(`SELECT * FROM public.problems`);
     return data.rows;
   } catch (error) {
-    console.error('Error in getMembers:', error);
+    console.error('Error in getProblems:', error);
     throw error; // Rethrow the error to propagate it upwards
   }
 }
@@ -102,7 +102,7 @@ module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryDetailByInvId,
-  getMembers,
+  getProblems,
   addClassification,
   addNewInventory,
   verifyNewClassification,

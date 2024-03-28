@@ -80,18 +80,16 @@ Util.buildVehicleDetail = async function (data) {
 };
 
 /*********************
- * Build members list for Intentional Error
+ * Build list for Intentional Error
  ****************************/
-Util.buildMemberList = async function (data) {
-    let list = '<ol id="members-list">';
-    data.forEach((member) => {
-      list += "<li>";
-      list += member.member_id + " " + member.member_name;
-      list += "</li>";
+Util.buildErrorList = async function (data) {
+    let errorList = '<ol id="error-list">';
+    data.forEach((problem) => {
+        errorList += `<li>${problem.id} ${problem.value}</li>`;
     });
-    list += "</ul>";
-    return list;
-  };
+    errorList += "</ul>";
+    return errorList;
+};
 
 /*********************
  * Build a select list from classification

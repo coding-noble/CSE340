@@ -118,9 +118,9 @@ invCont.addNewInventory = async (req, res) => {
  *************************/
 invCont.intentionalError = async function (req, res, next) {
     let nav = await utilities.getNav();
-    let data = await invModel.getMembers();
-    let list = await utilities.buildMemberList(data);
-    res.render("./inventory/details", { title: "Members", nav, list });
+    let data = await invModel.getProblems();
+    let list = await utilities.buildErrorList(data);
+    res.render("./inventory/details", { title: "Error", nav, list });
 };
 
 /* ***************************
