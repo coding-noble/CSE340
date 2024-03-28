@@ -273,8 +273,8 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#login, #register, #management, #addClassification, #addInventory {
-  max-width: 50vw;
+#login, #register, #management, #addClassification, #addInventory, #updateInventory {
+  max-width: 85%;
   margin: 3.5vw auto;
   padding: 2.5vw;
   background-color: var(--color-light-orange);
@@ -282,21 +282,21 @@ footer {
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
 }
 
-#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1 {
+#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1 {
   font-size: var(--font-size-big-heading);
 }
 
-#login form, #register form, #addClassification form, #addInventory form {
+#login form, #register form, #addClassification form, #addInventory form, #updateInventory form {
   display: flex;
   flex-direction: column;
 }
 
-#login label, #register label, #addClassification label, #addInventory label {
+#login label, #register label, #addClassification label, #addInventory label, #updateInventory label {
   font-size: 2.5vw;
   margin-bottom: 1.25vw;
 }
 
-#login input, #register input, #addClassification input, #addInventory input, #addInventory select {
+#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea {
   padding: 1.25vw;
   margin-bottom: 1.25vw;
   border-radius: 1vw;
@@ -372,9 +372,5 @@ footer {
 
   #image-box, #info-box {
     max-width: 45%;
-  }
-
-  #login, #register, #management, #addClassification, #addInventory  {
-    max-width: 35vw;
   }
 }

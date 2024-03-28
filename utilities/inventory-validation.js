@@ -106,4 +106,22 @@ validate.checkAddInv = async (req, res, next) => {
     next();
 };
 
+validate.checkUpdateData = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const nav = await utilities.getNav();
+        const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body;
+        const invClass = await utilities.buildClassificationList(classification_id);
+        res.render("inventory/update-inventory", {
+            errors, title: "Update Inventory", nav,
+            invClass, inv_make, inv_model,
+            inv_year, inv_description, inv_image,
+            inv_thumbnail, inv_price, inv_miles,
+            inv_color, classification_id,
+        });
+        return;
+    }
+    next();
+};
+
 module.exports = validate;

@@ -37,7 +37,7 @@ async function getInventoryDetailByInvId(inv_id) {
       WHERE inv_id = $1`,
       [inv_id]
     );
-    return data.rows;
+    return data.rows[0];
   } catch (error) {
     console.error("Error fetching inventory details: " + error);
   }
@@ -93,8 +93,8 @@ async function getMembers() {
     const data = await pool.query(`SELECT * FROM public.members`);
     return data.rows;
   } catch (error) {
-    console.error("Error fetching members: " + error);
-    return error;
+    console.error('Error in getMembers:', error);
+    throw error; // Rethrow the error to propagate it upwards
   }
 }
 

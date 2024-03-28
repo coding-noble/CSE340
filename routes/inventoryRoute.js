@@ -29,4 +29,13 @@ router.post("/add-inventory", inventoryValidate.addInvRules(), inventoryValidate
 // Intentional error route
 router.get("/err", utilities.handleErrors(invController.intentionalError));
 
+// Route to getInventory
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+// Route to deliver inventory editor
+router.get("/update/:inventory_id", utilities.handleErrors(invController.buildUpdateInventoryView));
+
+// Post for update inventory
+router.post("/update", inventoryValidate.addInvRules(), inventoryValidate.checkUpdateData, utilities.handleErrors(invController.buildUpdateInventoryView));
+
 module.exports = router;

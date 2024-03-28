@@ -60,29 +60,38 @@ Util.buildClassificationGrid = async function (data) {
  * Build the Vehicle view HTML
  ********************/
 Util.buildVehicleDetail = async function (data) {
-    if (!data || !data.length) {
-        return "<p>Sorry, this product is not in stock.</p>";
-    }
-
-    const invData = data[0];
-    const formattedPrice = new Intl.NumberFormat("en-US").format(invData.inv_price);
-    const formattedMiles = new Intl.NumberFormat("en-US").format(invData.inv_miles);
+    const formattedPrice = new Intl.NumberFormat("en-US").format(data.inv_price);
+    const formattedMiles = new Intl.NumberFormat("en-US").format(data.inv_miles);
 
     return `
         <div id="details-view">
             <div id="image-box">
-                <img src="${invData.inv_image}" alt="Image of ${invData.inv_year} ${invData.inv_make} ${invData.inv_model}"/>
+                <img src="${data.inv_image}" alt="Image of ${data.inv_year} ${data.inv_make} ${data.inv_model}"/>
             </div>
             <div id="info-box">
-                <h2>Details of ${invData.inv_year} ${invData.inv_make} ${invData.inv_model}</h2>
+                <h2>Details of ${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>
                 <p><strong>Price:</strong> $${formattedPrice}</p>
-                <p><strong>Description:</strong> ${invData.inv_description}</p>
-                <p><strong>Color:</strong> ${invData.inv_color}</p>
+                <p><strong>Description:</strong> ${data.inv_description}</p>
+                <p><strong>Color:</strong> ${data.inv_color}</p>
                 <p><strong>Miles:</strong> ${formattedMiles}</p>
             </div>
         </div>
     `;
 };
+
+/*********************
+ * Build members list for Intentional Error
+ ****************************/
+Util.buildMemberList = async function (data) {
+    let list = '<ol id="members-list">';
+    data.forEach((member) => {
+      list += "<li>";
+      list += member.member_id + " " + member.member_name;
+      list += "</li>";
+    });
+    list += "</ul>";
+    return list;
+  };
 
 /*********************
  * Build a select list from classification
@@ -104,12 +113,12 @@ Util.buildClassificationList = async function (classification_id = null) {
     return classificationList;
 };
 
-/* ****************************************
+/*****************************************
  * Middleware For Handling Errors
  **************************************** */
 Util.handleErrors = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
-/* ****************************************
+/*****************************************
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
@@ -130,9 +139,9 @@ Util.checkJWTToken = (req, res, next) => {
     } else next();
 }
 
-/* ****************************************
+/*****************************************
  *  Check Login
- * ************************************ */
+ *****************************************/
 Util.checkLogin = (req, res, next) => {
     if (res.locals.loggedin) {
         next()
