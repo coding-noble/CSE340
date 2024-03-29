@@ -1,3 +1,4 @@
+const { parse } = require("dotenv");
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
@@ -198,6 +199,41 @@ invCont.updateInventory = async function (req, res, next) {
             classification_id
         })
     }
+}
+
+/* ***************************
+ *  Build delete confirmation view
+ * ************************** */
+invCont.deleteView = async function (req, res, next) {
+    const inv_id = parseInt(req.params.inv_id);
+    const nav = await utilities.getNav();
+    const itemData = await invModel.getInventoryDetailByInvId(inv_id);
+    res.render("./inventory/delete-confirm", {
+        title: `Delete ${itemData.inv_make} ${itemData.inv_model}`,
+        nav,
+        errors: null,
+        inv_id: itemData.inv_id,
+        inv_make: itemData.inv_make,
+        inv_model: itemData.inv_model,
+        inv_year: itemData.inv_year,
+        inv_price: itemData.inv_price,
+    });
+}
+
+/* ***************************
+ *  Delete Inventory Item
+ * ************************** */
+invCont.deleteItem = async function (req, res, next) {
+    const inv_id = parseInt(req.params.inv_id);
+    const deleteResult = await invModel.deleteInventoryItem(inv_id);
+
+    if (deleteResult) {
+        req.flash("notice", 'The deletion was successful.');
+    }
+    else {
+        req.flash("notice", 'Sorry, the delete failed.');
+    }
+    res.redirect("/inv");
 }
 
 module.exports = invCont;

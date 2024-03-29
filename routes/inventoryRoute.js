@@ -17,11 +17,11 @@ router.get("/", utilities.handleErrors(invController.buildManagement));
 // Route to build add-classification view
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassificationView));
 
-// Route to build the add-inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
-
 // Route to post new classification to the DB
 router.post("/add-classification", inventoryValidate.addClassificationValidationRules(), inventoryValidate.checkAddClassification, utilities.handleErrors(invController.addclassification));
+
+// Route to build the add-inventory view
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
 
 // Route to post/add new inventory
 router.post("/add-inventory", inventoryValidate.addInvRules(), inventoryValidate.checkAddInv, utilities.handleErrors(invController.addNewInventory));
@@ -37,5 +37,11 @@ router.get("/update/:inventory_id", utilities.handleErrors(invController.buildUp
 
 // Post for update inventory
 router.post("/update", inventoryValidate.addInvRules(), inventoryValidate.checkUpdateData, utilities.handleErrors(invController.updateInventory));
+
+// Deliver the delete confirmation view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteView));
+
+// Process the delete inventory request
+router.post("/delete", utilities.handleErrors(invController.deleteItem));
 
 module.exports = router;
