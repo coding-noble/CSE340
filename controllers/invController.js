@@ -91,6 +91,7 @@ invCont.addNewInventory = async (req, res) => {
     const nav = await utilities.getNav();
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, } = req.body;
     const addInventory = await invModel.addNewInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id);
+    const classificationSelect = await utilities.buildClassificationList();
     if (addInventory) {
         req.flash(
             "notice",
@@ -99,6 +100,7 @@ invCont.addNewInventory = async (req, res) => {
         res.status(201).render("inventory/management", {
             title: "Management",
             nav,
+            classificationSelect,
             errors: null,
         });
     } else {
@@ -224,7 +226,7 @@ invCont.deleteView = async function (req, res, next) {
  *  Delete Inventory Item
  * ************************** */
 invCont.deleteItem = async function (req, res, next) {
-    const inv_id = parseInt(req.params.inv_id);
+    const inv_id = parseInt(req.body.inv_id);
     const deleteResult = await invModel.deleteInventoryItem(inv_id);
 
     if (deleteResult) {
