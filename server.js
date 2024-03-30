@@ -84,7 +84,7 @@ app.use(async (err, req, res, next) => {
   if (err.status == 404) {
     message = err.message;
   } else {
-    message = "Oops! There seems to a problem with the link";
+    message = "Oops! There seems to a problem with the link: " + err.message;
   }
   res.render("errors/error", {
     title: err.status || "Server Error",
