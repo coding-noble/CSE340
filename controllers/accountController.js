@@ -30,9 +30,9 @@ async function buildLogin(req, res, next) { await buildView(req, res, next, "log
 async function buildRegister(req, res, next) { await buildView(req, res, next, "register", "Register"); }
 
 /* ****************************************
-*  Deliver default view
+*  Deliver Account Management view
 * *************************************** */
-async function buildDefault(req, res, next) { await buildView(req, res, next, "default", "Default"); }
+async function buildAccountManagement(req, res, next) { await buildView(req, res, next, "management", "Account Management"); }
 
 /* ****************************************
 *  Process registration request
@@ -91,4 +91,4 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildDefault };
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement };
