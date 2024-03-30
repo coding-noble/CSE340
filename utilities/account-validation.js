@@ -85,12 +85,12 @@ validate.accountUpdateRules = () => {
         body("account_firstname").trim().escape().notEmpty().isLength({ min: 1 }).withMessage("Please provide a first name."),
         body("account_lastname").trim().escape().notEmpty().isLength({ min: 2 }).withMessage("Please provide a last name."),
         body("account_email").trim().escape().notEmpty().isEmail().normalizeEmail().withMessage("A valid email is required.")
-        .custom(async (account_email, {req}) => {
-            const emailExists = await accountModel.checkExistingEmail(account_email, req.body.old_email);
-            if (emailExists) {
-                throw new Error("Email already exists. Please log in or use a different email address.");
-            }
-        })
+            .custom(async (account_email, { req }) => {
+                const emailExists = await accountModel.checkExistingEmail(account_email, req.body.old_email);
+                if (emailExists) {
+                    throw new Error("Email already exists. Please log in or use a different email address.");
+                }
+            })
     ];
 };
 
@@ -134,7 +134,6 @@ validate.passwordRules = () => {
                 minSymbols: 1,
             })
             .withMessage("Password does not meet requirements."),
-
     ];
 };
 

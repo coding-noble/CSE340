@@ -272,7 +272,7 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#login, #register, #management, #addClassification, #addInventory, #updateInventory, #loggedin, #update-account {
+#login, #register, #management, #addClassification, #addInventory, #updateInventory, #loggedin, #update-account, #deleteInventory {
   max-width: 85%;
   margin: 3.5vw auto;
   padding: 2.5vw;
@@ -281,7 +281,7 @@ footer {
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
 }
 
-#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1, #loggedin h1, #update-account h1 {
+#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1, #loggedin h1, #update-account h1, #deleteInventory h1 {
   font-size: var(--font-size-big-heading);
 }
 
@@ -289,17 +289,17 @@ footer {
   font-size: var(--font-size-heading);
 }
 
-#login form, #register form, #addClassification form, #addInventory form, #updateInventory form, #update-account form {
+#login form, #register form, #addClassification form, #addInventory form, #updateInventory form, #update-account form, #deleteInventory form {
   display: flex;
   flex-direction: column;
 }
 
-#login label, #register label, #addClassification label, #addInventory label, #updateInventory label, #update-account label {
+#login label, #register label, #addClassification label, #addInventory label, #updateInventory label, #update-account label, #deleteInventory label {
   font-size: 2.5vw;
   margin-bottom: 1.25vw;
 }
 
-#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea, #update-account input, #management select {
+#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea, #update-account input, #management select, #deleteInventory input {
   padding: 1.25vw;
   margin-bottom: 1.25vw;
   border-radius: 1vw;
