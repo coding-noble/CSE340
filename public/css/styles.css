@@ -9,7 +9,6 @@
   --nav-hover-color: #333333;
   --font-family-main: Arial, sans-serif;
   --font-family-heading: 'Press Start 2P', cursive;
-  /* --font-size-navigation: max(10px, min(2vw, 30px)); */
   --font-size-navigation: clamp(10px, 2vw, 35px);
   --font-size-base: clamp(15px, 2.25vw, 40px);
   --font-size-heading: clamp(15px, 3.5vw, 50px);
@@ -273,7 +272,7 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#login, #register, #management, #addClassification, #addInventory, #updateInventory {
+#login, #register, #management, #addClassification, #addInventory, #updateInventory, #loggedin, #update-account {
   max-width: 85%;
   margin: 3.5vw auto;
   padding: 2.5vw;
@@ -282,21 +281,25 @@ footer {
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
 }
 
-#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1 {
+#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1, #loggedin h1, #update-account h1 {
   font-size: var(--font-size-big-heading);
 }
 
-#login form, #register form, #addClassification form, #addInventory form, #updateInventory form {
+#loggedin h3, #management h3, #management h2, #management th {
+  font-size: var(--font-size-heading);
+}
+
+#login form, #register form, #addClassification form, #addInventory form, #updateInventory form, #update-account form {
   display: flex;
   flex-direction: column;
 }
 
-#login label, #register label, #addClassification label, #addInventory label, #updateInventory label {
+#login label, #register label, #addClassification label, #addInventory label, #updateInventory label, #update-account label {
   font-size: 2.5vw;
   margin-bottom: 1.25vw;
 }
 
-#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea {
+#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea, #update-account input, #management select {
   padding: 1.25vw;
   margin-bottom: 1.25vw;
   border-radius: 1vw;
@@ -304,7 +307,7 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#management p, #management a {
+#management p, #management td, #management a, #loggedin a, #loggedin p, #update-account p {
   font-size: var(--font-size-base);
 }
 
