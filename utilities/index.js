@@ -149,4 +149,15 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+Util.restrictAccess = (req, res, next) => {
+    const allowedTypes = ["Employee", "Admin"];
+    const accountType = res.locals.accountData.account_type;
+    if (allowedTypes.includes(accountType)) {
+        next();
+    } else {
+        req.flash("notice", "Access Denied.");
+        return res.redirect("/account/");
+    }
+}
+
 module.exports = Util;
