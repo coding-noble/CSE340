@@ -1,6 +1,6 @@
 const { route } = require("../routes/static");
 const utilities = require("../utilities");
-const messageModel = require("../models/messaging-model");
+const messageModel = require("../models/message-model");
 require("dotenv").config();
 
 /* ****************************************
@@ -24,7 +24,7 @@ async function buildInbox(req, res) {
 * ****************************************/
 async function buildArchive(req, res) {
     const nav = await utilities.getNav();
-    const archivedCount = await utilities.getCountById(req.params.account_id, (message) => message.message_archived);
+    const archivedCount = await messageModel.getArchivedCount(req.params.account_id);
     const archivedInbox = await utilities.buildMessageTable(req.params.account_id, true)
     res.render("message/archive", {
         title: `Archive`,

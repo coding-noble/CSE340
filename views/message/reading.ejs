@@ -1,5 +1,5 @@
 <% if (title) {%>
-  <div id="Message">
+  <div id="reading">
     <h1>
       <%= title %>
     </h1>
@@ -23,10 +23,10 @@
 
           <hr>
           <a href="/message/inbox/<%= locals.accountData.account_id %>">Return to Inbox</a>
-          <a href="/message/reply/<%= message_data.message_id %>" id="reply_message">Reply</a>
-          <a href="/message/toggle_read/<%= message_data.message_id %>" id="mark_read_message">Mark as <%- message_data.message_read ? "Unread" : "Read" %></a>
-          <a href="/message/toggle_archive/<%= message_data.message_id %>" id="archive_message"><%- message_data.message_archived ? "Unarchive" : "Archive" %> Message</a>
-          <a href="/message/delete/<%= message_data.message_id %>" id="delete_message">Delete Message</a>
+          <a href="/message/reply/<%= message_data.message_id %>">Reply</a>
+          <a href="/message/toggle_read/<%= message_data.message_id %>">Mark as <%- message_data.message_read ? "Unread" : "Read" %></a>
+          <a href="/message/toggle_archive/<%= message_data.message_id %>"><%- message_data.message_archived ? "Unarchive" : "Archive" %> Message</a>
+          <a href="/message/delete/<%= message_data.message_id %>">Delete Message</a>
 
           <% } else { %>
             <% res.redirect('/') %>

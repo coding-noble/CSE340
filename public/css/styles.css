@@ -272,7 +272,21 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#login, #register, #management, #addClassification, #addInventory, #updateInventory, #loggedin, #update-account, #deleteInventory {
+#login,
+#register,
+#management,
+#addClassification,
+#addInventory,
+#updateInventory,
+#loggedin,
+#update-account,
+#deleteInventory,
+#inbox,
+#archive,
+#reply,
+#new_message,
+#reading,
+#delete {
   max-width: 85%;
   margin: 3.5vw auto;
   padding: 2.5vw;
@@ -281,26 +295,59 @@ footer {
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
 }
 
-#login h1, #register h1, #management h1, #addClassification h1, #addInventory h1, #updateInventory h1, #loggedin h1, #update-account h1, #deleteInventory h1 {
+#login h1,
+#register h1,
+#management h1,
+#addClassification h1,
+#addInventory h1,
+#updateInventory h1,
+#loggedin h1,
+#update-account h1,
+#deleteInventory h1 {
   font-size: var(--font-size-big-heading);
 }
 
-#loggedin h3, #management h3, #management h2, #management th {
+#loggedin h3,
+#management h3,
+#management h2,
+#management th {
   font-size: var(--font-size-heading);
   margin-bottom: 0;
 }
 
-#login form, #register form, #addClassification form, #addInventory form, #updateInventory form, #update-account form, #deleteInventory form {
+#login form,
+#register form,
+#addClassification form,
+#addInventory form,
+#updateInventory form,
+#update-account form,
+#deleteInventory form {
   display: flex;
   flex-direction: column;
 }
 
-#login label, #register label, #addClassification label, #addInventory label, #updateInventory label, #update-account label, #deleteInventory label {
+#login label,
+#register label,
+#addClassification label,
+#addInventory label,
+#updateInventory label,
+#update-account label,
+#deleteInventory label {
   font-size: 2.5vw;
   margin-bottom: 1.25vw;
 }
 
-#login input, #register input, #addClassification input, #addInventory input, #addInventory select, #updateInventory input, #updateInventory select, #updateInventory textarea, #update-account input, #management select, #deleteInventory input {
+#login input,
+#register input,
+#addClassification input,
+#addInventory input,
+#addInventory select,
+#updateInventory input,
+#updateInventory select,
+#updateInventory textarea,
+#update-account input,
+#management select,
+#deleteInventory input {
   padding: 1.25vw;
   margin-bottom: 1.25vw;
   border-radius: 1vw;
@@ -308,7 +355,13 @@ footer {
   font-size: var(--font-size-base);
 }
 
-#management p, #management td, #management a, #loggedin a, #loggedin p, #loggedin li, #update-account p {
+#management p,
+#management td,
+#management a,
+#loggedin a,
+#loggedin p,
+#loggedin li,
+#update-account p {
   font-size: var(--font-size-base);
 }
 
@@ -332,7 +385,145 @@ hr {
   margin: 0;
 }
 
-@media screen and (min-width: 768px) {  
+#inbox h1,
+#archive h1 {
+  font-size: 5vw;
+  font-weight: bold;
+  font-family: var(--font-family-heading);
+  color: var(--header-font-color);
+  margin-bottom: 4vw;
+}
+
+#inbox ul li,
+#archive ul li {
+  list-style-type: none;
+  margin-bottom: 2vw;
+}
+
+#inbox ul li a,
+#archive ul li a {
+  text-decoration: none;
+  font-size: 3vw;
+}
+
+#inbox table,
+#archive table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4vw;
+}
+
+#inbox th,
+#archive th {
+  background-color: var(--color-orange);
+  color: var(--header-font-color);
+  padding: 2vw;
+  text-align: left;
+}
+
+#inbox td,
+#archive td {
+  border-bottom: 0.1vw solid #ccc;
+  padding: 2vw;
+}
+
+#inbox td a,
+#archive td a {
+  text-decoration: none;
+}
+
+/* Header */
+#reply h1,
+#new_message h1 {
+  font-size: 5vw;
+  margin-bottom: 4vw;
+  color: var(--header-font-color);
+}
+
+/* Form */
+#reply form,
+#new_message form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+#reply label,
+#new_message label {
+  font-weight: bold;
+  margin-bottom: 2vw;
+  font-size: 3vw;
+  color: var(--header-font-color);
+}
+
+/* Inputs */
+#reply input,
+#new_message input,
+#reply textarea,
+#new_message textarea,
+#reply select,
+#new_message select {
+  padding: 2vw;
+  margin-bottom: 3vw;
+  border-radius: 1vw;
+  border: 0.1vw solid #ccc;
+  font-size: 3vw;
+}
+
+/* Submit button */
+#reply button,
+#new_message button {
+  background-color: var(--nav-background-color);
+  color: var(--nav-font-color);
+  border: none;
+  padding: 2vw 4vw;
+  border-radius: 1vw;
+  cursor: pointer;
+  font-size: 3vw;
+  transition: background-color 0.3s;
+}
+
+#reply button:hover,
+#new_message button:hover {
+  background-color: var(--nav-hover-color);
+}
+
+/* Header */
+#reading h1,
+#delete h1 {
+  font-size: 5vw;
+  margin-bottom: 4vw;
+  color: var(--header-font-color);
+}
+
+/* reading Info */
+#reading p,
+#delete p {
+  font-size: 3vw;
+  margin-bottom: 2vw;
+  color: var(--header-font-color);
+}
+
+/* Links */
+#reading a,
+#delete a {
+  display: inline-block;
+  background-color: var(--nav-background-color);
+  color: var(--nav-font-color);
+  padding: 1.5vw 3vw;
+  border-radius: 1vw;
+  margin-right: 1vw;
+  text-decoration: none;
+  font-size: 3vw;
+  margin-top: 2vw;
+}
+
+#reading a:hover,
+#delete a:hover {
+  background-color: var(--nav-hover-color);
+}
+
+@media screen and (min-width: 768px) {
   nav {
     margin: 0 20px;
   }
@@ -362,7 +553,8 @@ hr {
     order: -1;
   }
 
-  #upgrade-navigation, #delorean-reviews {
+  #upgrade-navigation,
+  #delorean-reviews {
     flex: 1;
   }
 
@@ -380,7 +572,8 @@ hr {
     align-items: flex-start;
   }
 
-  #image-box, #info-box {
+  #image-box,
+  #info-box {
     max-width: 45%;
   }
 }

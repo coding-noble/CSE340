@@ -1,5 +1,5 @@
 <% if (title) { %>
-    <div id="Archive">
+    <div id="archive">
         <h1>
             <%= title %>
         </h1>
@@ -13,6 +13,10 @@
                 <% }) %>
             </ul>
         <% } %>
+        
+        <ul>
+            <li><a href="/message/inbox/<%= locals.accountData.account_id %>">Return to Inbox</a></li>
+        </ul>
 
         <%- archivedInbox %>
     </div>

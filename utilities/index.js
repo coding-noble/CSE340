@@ -1,5 +1,5 @@
 const invModel = require("../models/inventory-model");
-const messageModel = require("../models/messaging-model")
+const messageModel = require("../models/message-model")
 const Util = {};
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
