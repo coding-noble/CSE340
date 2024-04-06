@@ -1,0 +1,26 @@
+<% if (title) { %>
+    <div id="Inbox">
+        <h1>
+            <%= title %>
+        </h1>
+        <%- messages() %>
+        <% if (errors) { %>
+            <ul class="notice">
+                <% errors.array().forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+
+        <ul>
+            <li><a href="/message/new_message">Create New Message</a></li>
+            <li><a href="/message/archive/<%= locals.accountData.account_id %>">View <span id="archived-count"><%= archivedCount %></span> Archived Messages</a></li>
+        </ul>
+
+        <%- messageInbox %>
+    </div>
+<% } else { %>
+    <% res.redirect('/') %>
+<% } %>

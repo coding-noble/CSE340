@@ -1,6 +1,7 @@
 const { route } = require("../routes/static");
 const utilities = require("../utilities");
 const accountModel = require("../models/account-model");
+const messageModel = require("../models/messaging-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -32,7 +33,17 @@ async function buildRegister(req, res, next) { await buildView(req, res, next, "
 /* ****************************************
 *  Deliver Account Management view
 * *************************************** */
-async function buildAccountManagement(req, res, next) { await buildView(req, res, next, "management", "Account Management"); }
+async function buildAccountManagement(req, res, next) { 
+  const nav = await utilities.getNav();
+  const unreadCount = await messageModel.getUnreadCount(res.locals.accountData.account_id);
+  res.render("account/management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+    unreadCount,
+  });
+  await buildView(req, res, next, "management", "Account Management"); 
+}
 
 /* ****************************************
 *  Deliver Update Account view

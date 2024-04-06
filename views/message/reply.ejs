@@ -1,0 +1,37 @@
+<% if (title) {%>
+    <div id="Reply Message">
+      <h1>
+        <%= title %>
+      </h1>
+      <%- messages() %>
+  
+        <!-- Error message block -->
+        <% if (errors) { %>
+          <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+
+          <form action="/message/new_message" method="post">
+            <input type="number" name="new_message_sender" id="new_message_sender" value="<%= locals.accountData.account_id %>" hidden>
+
+            <label for="new_message_recipient"><strong>To:</strong></label>
+            <input type="text" name="recipient_name" id="recipient_name" value="<%- recipient %>" readonly>
+            <input type="text" name="new_message_recipient" id="new_message_recipient" value="<%- recipient_id %>" hidden required>
+
+            <label for="new_message_subject"><strong>Subject:</strong></label>
+            <input type="text" name="new_message_subject" id="new_message_subject" required>
+
+            <label for="new_message_content"><strong>Message:</strong></label>
+            <textarea name="new_message_content" id="new_message_content" cols="30" rows="10" required></textarea>
+
+            <button type="submit">Send</button>
+          </form>
+<% } else { %>
+    <% res.redirect('/') %>
+<% } %>
+

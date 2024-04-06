@@ -14,10 +14,18 @@
         </ul>
     <% } %>
     <h3>Welcome <%= locals.accountData.account_firstname %></h3>
+    <hr>
     <p>You're logged in</p>
     <p><a href="update/<%= locals.accountData.account_id %>" title="Update Account Information">Edit Account Information</a></p>
+    <h3>Message Center</h3>
+    <hr>
+    <ul>
+        <li>You have <%= unreadCount %> unread messages</li>
+        <li>Go to <a href="/message/inbox/<%= locals.accountData.account_id %>">inbox</a></li>
+    </ul>
     <% if (locals.accountData.account_type == "Employee" || locals.accountData.account_type == "Admin") { %>
         <h3>Inventory Management</h3>
+        <hr>
         <a href="/inv">Manage Inventory</a>
     <% } %>
 </div>

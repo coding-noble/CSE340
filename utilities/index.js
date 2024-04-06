@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model");
+const messageModel = require("../models/messaging-model")
 const Util = {};
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -158,6 +159,56 @@ Util.restrictAccess = (req, res, next) => {
         req.flash("notice", "Access Denied.");
         return res.redirect("/account/");
     }
+}
+
+/*********************
+ * Build a select list for message recipient
+ ****************************/
+Util.buildRecipientList = async function (recipient_id = null) {
+    const data = await messageModel.getRecipients();
+    let recipientsList = `
+    <select name="new_message_recipient" id="new_message_recipient" required>
+            <option value="">Select a Recipient</option>`;
+    data.rows.forEach((row) => {
+        recipientsList += `
+            <option value="${row.account_id}" ${recipient_id != null && row.account_id == recipient_id ? "selected" : ""}>
+                ${row.account_firstname} ${row.account_lastname}
+            </option>`;
+    });
+    recipientsList += `</select>`;
+    return recipientsList;
+};
+
+
+/*************************************************
+ * Build Inbox/Archive Inbox HTML By Account ID
+ *************************************************/
+Util.buildMessageTable = async function (account_id, showArchived = false) {
+    const messageData = await messageModel.getInboxByAccountId(account_id);
+    let inboxTable = `
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Received</strong></th>
+                    <th><strong>Subject</strong></th>
+                    <th><strong>From</strong></th>
+                    <th><strong>Read</strong></th>
+                </tr>
+            </thead>
+            <tbody>`;
+    messageData.rows.forEach((row) => {
+        if (row.message_archived == showArchived) {
+            inboxTable += `
+            <tr>
+                <td>${row.message_created}</td>
+                <td><a href="/message/reading/${row.message_id}">${row.message_subject}</a></td>
+                <td>${row.account_firstname} ${row.account_lastname}</td>
+                <td>${row.message_read ? "Yes" : "No"}</td>
+            </tr>`;
+        }
+    });
+    inboxTable += "</tbody></table>";
+    return inboxTable;
 }
 
 module.exports = Util;

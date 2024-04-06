@@ -1,0 +1,30 @@
+<% if (title) {%>
+    <div id="Message">
+      <h1>
+        <%= title %>
+      </h1>
+      <%- messages() %>
+  
+        <!-- Error message block -->
+        <% if (errors) { %>
+          <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+  
+            <p><strong>Subject:</strong> <span id="message_subject"> <%- message_data.message_subject %> </span></p>
+            <p><strong>From:</strong> <span id="message_from"><%- message_data.account_firstname %> <%-
+                    message_data.account_lastname %></span></p>
+            <p><strong>Message:</strong> <span id="message_content"><%- message_data.message_body %></span></p>
+  
+            <hr>
+            <a href="/message/inbox/<%= locals.accountData.account_id %>">Return to Inbox</a>
+            <a href="/message/confirm_delete/<%= message_data.message_id %>" id="confirm_delete">Confirm Delete</a>
+  
+            <% } else { %>
+              <% res.redirect('/') %>
+                <% } %>
