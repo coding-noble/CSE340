@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const utilities = require("../utilities");
 const messageController = require("../controllers/messagingController");
+const messageValidation = require("../utilities/message-validation")
 
 router.use("/", utilities.checkLogin);
 
@@ -15,7 +16,7 @@ router.get("/archive/:account_id", utilities.handleErrors(messageController.buil
 
 router.get("/new_message", utilities.handleErrors(messageController.buildNewMessage));
 
-router.post("/new_message", utilities.handleErrors(messageController.newMessage));
+router.post("/new_message", messageValidation.addNewMessageRules(), messageValidation.checkNewMessage, utilities.handleErrors(messageController.newMessage));
 
 router.get("/toggle_read/:message_id", utilities.handleErrors(messageController.toggleRead))
 

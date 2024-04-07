@@ -167,11 +167,11 @@ Util.restrictAccess = (req, res, next) => {
 Util.buildRecipientList = async function (recipient_id = null) {
     const data = await messageModel.getRecipients();
     let recipientsList = `
-    <select name="new_message_recipient" id="new_message_recipient" required>
+    <select name="new_message_recipient" id="new_message_recipient" value="Test" required>
             <option value="">Select a Recipient</option>`;
     data.rows.forEach((row) => {
         recipientsList += `
-            <option value="${row.account_id}" ${recipient_id != null && row.account_id == recipient_id ? "selected" : ""}>
+            <option value="${row.account_id}" ${recipient_id !== null && row.account_id == recipient_id ? "selected" : ""}>
                 ${row.account_firstname} ${row.account_lastname}
             </option>`;
     });

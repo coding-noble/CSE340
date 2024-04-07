@@ -23,11 +23,11 @@
             <%- recipientList %>
 
             <label for="new_message_subject"><strong>Subject:</strong></label>
-            <input type="text" name="new_message_subject" id="new_message_subject" required>
+            <input type="text" name="new_message_subject" id="new_message_subject" value="<%= locals.new_message_subject %>" required>
 
             
             <label for="new_message_content"><strong>Message:</strong></label>
-            <textarea name="new_message_content" id="new_message_content" cols="30" rows="10" required></textarea>
+            <textarea name="new_message_content" id="new_message_content" cols="30" rows="10" value="<%= locals.new_message_content %>" required></textarea>
 
             <button type="submit">Send</button>
           </form>
